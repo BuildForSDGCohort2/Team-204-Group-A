@@ -1,0 +1,84 @@
+////////////////////////////////////NAV BAR////////////////////////
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: inherit;
+
+  &__brand {
+    width: 20%;
+  }
+
+  &__logo {
+    width: 100%;
+    height: auto;
+  }
+  &__hamburger {
+    margin-left: auto;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+  }
+  &__collapse {
+    flex: 1;
+  }
+  &__list {
+    list-style-type: none;
+    @include flex-props;
+  }
+  &__item {
+    margin: 0 1rem;
+    border-radius: 3rem;
+  }
+  &__link {
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    color: $color-light;
+
+    &:hover,
+    &:active {
+    }
+  }
+}
+
+//////////////////////////////CARD/////////////////////////
+.card {
+  padding: 1rem 2rem;
+  &__body {
+  }
+  &__text {
+    font-size: 1.7rem;
+    line-height: 200%;
+    color: $color-light;
+    letter-spacing: 0.1rem;
+  }
+  &__cta {
+    // padding: 1rem 2rem;
+    @include flex-props;
+    margin-top: 2rem;
+  }
+  &__button {
+    padding: 1rem 1.5rem;
+    outline: none;
+    font-size: 1.8rem;
+    border-radius: 1rem;
+    border: none;
+    color: $color-dark;
+  }
+}
+
+//////////////////////////////Form/////////////////////////
+form {
+  width: 90%;
+  @include flex-props;
+  flex-direction: column;
+}
