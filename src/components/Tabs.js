@@ -76,14 +76,21 @@ const Tabbs = (props) => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        Sign Up
+        <Form
+          signIn={props.signIn}
+          title="A First time to everything"
+          use="Sign Up"
+          submit={props.signInSubmit}
+          change={props.change}
+        />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <Form
           login={props.login}
           title="Welcome Back"
           use="Sign In"
-          submit={props.submit}
+          change={props.change}
+          submit={props.loginSubmit}
         />
       </TabPanel>
     </div>

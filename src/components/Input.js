@@ -13,6 +13,7 @@ const Input = (props) => {
             {...props.attrs}
             className="form__input"
             value={props.value}
+            onChange={props.change}
           />
         </div>
       );
@@ -27,6 +28,7 @@ const Input = (props) => {
             {...props.attrs}
             className="form__input"
             value={props.value}
+            onChange={props.change}
           />
         </div>
       );
@@ -41,6 +43,7 @@ const Input = (props) => {
             {...props.attrs}
             className="form__input"
             value={props.value}
+            onChange={props.change}
           />
         </div>
       );
