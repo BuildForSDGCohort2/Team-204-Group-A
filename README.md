@@ -5,7 +5,7 @@
   <li>React JS</li>
 </ul>
 
-Live preview here: 
+Live preview here: https://pres-cribe-me.web.app/ 
 <br/>
 <br/>
 
@@ -19,7 +19,7 @@ Install dependencies
 ### npm start
 Run the application, your default browser should redirect you to <b>localhost:3000</b> otherwise paste the url in your browser
 
-### npm tests
+### npm test
 Run tests
 
 ### npm run build
