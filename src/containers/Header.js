@@ -1,9 +1,14 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Card from "../components/Card";
-import SignUpForm from "../components/Form";
+import Tabbs from "../components/Tabs";
+import { useFormik } from "formik";
 
-export default function Header(props) {
+const Header = (props) => {
+  const signIn = useFormik({
+    initialValues: { email: "", password: "" },
+  });
+
   return (
     <section id="home" className="header">
       <div className="container">
@@ -14,10 +19,12 @@ export default function Header(props) {
             <Card />
           </div>
           <div className="header__right">
-            <SignUpForm title={"Sign Up"} />
+            <Tabbs login={props.login} submit={signIn} />
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Header;

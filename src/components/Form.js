@@ -1,66 +1,30 @@
 import React from "react";
-import { Formik, Field, Form } from "formik";
+import Input from "./Input";
 
-export default function SignUpForm(props) {
+const Form = (props) => {
+  const inputs = Object.entries(props.login).map((input) => (
+    <Input
+      type={input[1].type}
+      attrs={input[1].attrs}
+      key={input[0]}
+      label={input[0]}
+    />
+  ));
   return (
-    <div className="form">
-      <h2>{props.title}</h2>
+    <form onSubmit={props.submit} className="form">
+      <div className="form__group">
+        <h3 className="form__title">{props.title}</h3>
+      </div>
 
-      <Formik
-        className="form"
-        initialValues={{ name: "", email: "" }}
-        onSubmit={async (values) => {
-          await new Promise((resolve) => setTimeout(resolve, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
-      >
-        <Form>
-          <div className="form__formgroup">
-            <label htmlFor="fullname">Full Name</label>
-            <Field
-              id="fullname"
-              name="fullname"
-              placeholder="Your Full Name"
-              required
-            />
-          </div>
+      {inputs}
 
-          <div className="form__formgroup">
-            <label htmlFor="username">Username</label>
-            <Field
-              id="username"
-              name="username"
-              required
-              placeholder="Choose A Username"
-            />
-          </div>
-
-          <div className="form__formgroup">
-            <label htmlFor="email">Email</label>
-            <Field
-              id="email"
-              name="email"
-              placeholder="Your Email"
-              type="email"
-              required
-            />
-          </div>
-
-          <div className="form__formgroup">
-            <label htmlFor="password">Password</label>
-            <Field id="password" name="password" required />
-          </div>
-
-          <div className="form__formgroup">
-            <label htmlFor="confirm_password">Confirm Password</label>
-            <Field id="confirm_password" name="confirm_password" required />
-          </div>
-
-          <div className="form__formgroup">
-            <button type="submit">Submit</button>
-          </div>
-        </Form>
-      </Formik>
-    </div>
+      <div className="form__group">
+        <button type="submit" className="form__btn">
+          {props.use}
+        </button>
+      </div>
+    </form>
   );
-}
+};
+
+export default Form;
