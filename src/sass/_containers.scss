@@ -1,7 +1,9 @@
 section {
   min-height: 100vh;
   position: relative;
+  width: 100%;
 }
+
 .header {
   background-image: linear-gradient(
     112.1deg,
@@ -13,10 +15,12 @@ section {
   &__content {
     width: 100%;
     flex: 1;
+    padding: 1rem;
     @include flex-props;
 
     @include respond(tab-port) {
       flex-direction: column;
+      margin-top: 12rem;
     }
   }
 
@@ -27,6 +31,7 @@ section {
 
     @include respond(tab-port) {
       width: 100%;
+      margin: 2rem 0;
     }
   }
 }
