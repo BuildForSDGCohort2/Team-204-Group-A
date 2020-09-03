@@ -34,6 +34,29 @@ const Form = (props) => {
 
       {inputs}
 
+      {props.signIn && (
+        <div className="form__group">
+          <input
+            className="form__checkbox"
+            type="checkbox"
+            name="checkbox"
+            id="checkbox"
+            required
+          />
+          <label className="form__label" htmlFor="checkbox" style={{ flex: 1 }}>
+            I Agree to Our Terms and conditions.
+          </label>
+        </div>
+      )}
+
+      {props.login && (
+        <div className="form__group">
+          <a className="form__link" href="/">
+            Forgot Password?
+          </a>
+        </div>
+      )}
+
       <div className="form__group">
         <button type="submit" className="form__btn">
           {props.use}

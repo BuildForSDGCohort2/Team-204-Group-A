@@ -97,18 +97,30 @@
   min-height: 10rem;
   width: 100%;
 
+  @include respond(phone) {
+    padding: 1rem 0;
+  }
+
   &__title {
     text-transform: uppercase;
     font-weight: bold;
     padding: 1rem;
     font-size: 2rem;
     color: $color-dark;
+
+    @include respond(phone) {
+      font-size: 1.8rem;
+    }
   }
 
   &__group {
     padding: 1rem;
     width: 100%;
     @include flex-props;
+
+    @include respond(phone) {
+      padding: 1rem 0;
+    }
   }
   &__label {
     text-transform: capitalize;
@@ -116,6 +128,10 @@
     font-size: 1.8rem;
     margin: 0 1rem;
     width: 20%;
+
+    @include respond(phone) {
+      font-size: 1.6rem;
+    }
   }
   &__input {
     color: $color-dark;
@@ -140,6 +156,7 @@
     padding: 1rem 2rem;
     font-size: 1.8rem;
     outline: none;
+    overflow: hidden;
     border: none;
     background-image: linear-gradient(
       112.1deg,
@@ -148,6 +165,91 @@
     );
     color: $color-light;
     margin: 1rem;
+    transition: all 0.3s;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &:hover,
+    &:active {
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.5);
+      outline: none;
+      border: none;
+    }
+    &:hover {
+      transform: translateY(-0.1rem) scale(0.98);
+    }
+    &:active {
+      transform: translateY(0.1rem) scale(1.1);
+    }
+  }
+
+  &__checkbox {
+    cursor: pointer;
+    position: relative;
+    margin: 0 2rem;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: all 0.3s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 3rem;
+      height: 3rem;
+      background-color: transparent;
+      transition: all 0.3s;
+      border-radius: 50%;
+      border: 0.3rem solid black;
+
+      @include respond(phone) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+    &::after {
+      content: "";
+      opacity: 0.1;
+      transition: all 0.3s;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: black;
+      border-radius: 50%;
+
+      @include respond(phone) {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    &:checked {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__link {
+    width: 100%;
+    padding: 1rem 0;
+    margin: 0 1.2rem;
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    color: $color-dark;
+
+    &:hover,
+    &:active,
+    &:visited {
+      color: $color-dark;
+      text-decoration: none;
+    }
   }
 }
 
