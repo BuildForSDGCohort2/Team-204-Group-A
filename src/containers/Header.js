@@ -97,9 +97,15 @@ class Header extends Component {
     Object.values(this.state.signIn).map(
       (val) => (message[val.attrs.name] = val.value)
     );
+    const fullname = message.name.split(" ");
+    message["firstname"] = fullname[0];
+    message["lastname"] = fullname[1];
     console.log(message);
     axios
-      .post("https://prescribe/api/v1/user/signup", message)
+      .post(
+        "https://cors-anywhere.herokuapp.com/https://prescribeme-stage.herokuapp.com/api/v1/user/signup",
+        message
+      )
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   };
