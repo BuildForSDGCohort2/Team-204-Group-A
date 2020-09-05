@@ -81,7 +81,7 @@ const Tabbs = (props) => {
           title="A First time to everything"
           use="Sign Up"
           submit={props.signInSubmit}
-          change={props.change}
+          change={props.signInchange}
         />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
@@ -89,7 +89,7 @@ const Tabbs = (props) => {
           login={props.login}
           title="Welcome Back"
           use="Sign In"
-          change={props.change}
+          change={props.loginchange}
           submit={props.loginSubmit}
         />
       </TabPanel>

@@ -5,7 +5,7 @@ import Tabbs from "../components/Tabs";
 import { useFormik } from "formik";
 import axios from "axios";
 // import { Row, Container } from "react-bootstrap";
-
+import { formSubmitHandler, formChangeHandler } from "../utility/Utility";
 class Header extends Component {
   state = {
     links: ["home", "about", "contact", "login", "signin"],
@@ -78,32 +78,38 @@ class Header extends Component {
     },
   };
 
-  handleChange = (e) => {
-    const updateform = { ...this.state.signIn };
-    updateform[e.target.name] = {
-      ...this.state.signIn[e.target.name],
-      value: e.target.value,
-    };
+  signInHandleChange = (e) => {
+    const updateform = formChangeHandler(
+      this.state.signIn,
+      e.target.name,
+      e.target.value
+    );
+
     this.setState({ signIn: updateform });
+  };
+
+  loginHandleChange = (e) => {
+    const updateform = formChangeHandler(
+      this.state.login,
+      e.target.name,
+      e.target.value
+    );
+
+    this.setState({ login: updateform });
   };
 
   loginSubmitHandler = (e) => {
     e.preventDefault();
+    const message = formSubmitHandler(this.state.login);
+    console.log(message);
   };
 
   signInSubmitHandler = (e) => {
     e.preventDefault();
-    let message = {};
-    Object.values(this.state.signIn).map(
-      (val) => (message[val.attrs.name] = val.value)
-    );
-    const fullname = message.name.split(" ");
-    message["firstname"] = fullname[0];
-    message["lastname"] = fullname[1];
-    console.log(message);
+    const message = formSubmitHandler(this.state.signIn);
     axios
       .post(
-        "https://cors-anywhere.herokuapp.com/https://prescribeme-stage.herokuapp.com/api/v1/user/signup",
+        "https://cors-kila-mahali.herokuapp.com/https://prescribeme-stage.herokuapp.com/api/v1/user/signup",
         message
       )
       .then((response) => console.log(response))
@@ -125,7 +131,8 @@ class Header extends Component {
               signIn={this.state.signIn}
               loginSubmit={(e) => this.loginSubmitHandler(e)}
               signInSubmit={(e) => this.signInSubmitHandler(e)}
-              change={this.handleChange}
+              signInchange={this.signInHandleChange}
+              loginchange={this.loginHandleChange}
             />
           </div>
         </div>
