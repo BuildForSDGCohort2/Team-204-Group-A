@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Card from "../components/Card";
 import Tabbs from "../components/Tabs";
-import { useFormik } from "formik";
-import axios from "axios";
+// import { useFormik } from "formik";
 // import { Row, Container } from "react-bootstrap";
 import { formSubmitHandler, formChangeHandler } from "../utility/Utility";
+import * as actions from "../store/actions/export";
+import { connect } from "react-redux";
+
 class Header extends Component {
   state = {
     links: ["home", "about", "contact", "login", "signin"],
@@ -17,6 +19,15 @@ class Header extends Component {
           name: "email",
           id: "email",
           placeholder: "Your Email",
+        },
+      },
+      username: {
+        type: "text",
+        value: "",
+        attrs: {
+          name: "username",
+          id: "username",
+          placeholder: "Your Username",
         },
       },
       password: {
@@ -101,26 +112,28 @@ class Header extends Component {
   loginSubmitHandler = (e) => {
     e.preventDefault();
     const message = formSubmitHandler(this.state.login);
-    console.log(message);
+    this.props.onSignIn(message);
+    // axios
+    //   .post("/api/v1/user/auth/signin", message)
+    //   .then((response) => console.log(response))
+    //   .catch((error) => console.log(error));
   };
 
   signInSubmitHandler = (e) => {
     e.preventDefault();
     const message = formSubmitHandler(this.state.signIn);
-    axios
-      .post(
-        "https://cors-kila-mahali.herokuapp.com/https://prescribeme-stage.herokuapp.com/api/v1/user/signup",
-        message
-      )
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+    message["isSignUp"] = true;
+    this.props.onSignUp(message);
+    // axios
+    //   .post("/api/v1/user/signup", message)
+    //   .then((response) => console.log(response))
+    //   .catch((error) => console.log(error));
   };
 
   render() {
     return (
       <section id="home" className="header">
         <Nav links={this.state.links} />
-
         <div className="header__content">
           <div className="header__left">
             <Card />
@@ -141,4 +154,11 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignIn: (message) => dispatch(actions.auth(message)),
+    onSignUp: (message) => dispatch(actions.auth(message)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Header);

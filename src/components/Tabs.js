@@ -39,7 +39,6 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: "99%",
   },
 }));
 
@@ -61,7 +60,7 @@ const Tabbs = (props) => {
           indicatorColor="primary"
           textColor="inherit"
           variant="fullWidth"
-          aria-label="full width tabs example"
+          aria-label="Sign In and Sign Up Forms"
         >
           <Tab
             label="Sign Up"

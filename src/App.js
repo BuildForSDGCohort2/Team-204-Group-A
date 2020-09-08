@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./sass/main.scss";
 import Header from "./containers/Header";
 import About from "./containers/About";
+import Footer from "./containers/Footer";
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <>
         <Header />
         <About heading={"About Us"} />
+        <Footer />
       </>
     );
   }

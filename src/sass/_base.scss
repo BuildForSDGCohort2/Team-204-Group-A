@@ -23,3 +23,10 @@ body {
     padding: 1rem 0.3rem !important;
   }
 }
+
+.makeStyles-root-1 {
+  width: 84%;
+  @include respond(phone) {
+    width: 99% !important;
+  }
+}

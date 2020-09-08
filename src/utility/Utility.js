@@ -21,3 +21,10 @@ export const formChangeHandler = (form, input, value) => {
 
   return updateform;
 };
+
+export const updateObject = (oldState, newObject) => {
+  return {
+    ...oldState,
+    ...newObject,
+  };
+};
