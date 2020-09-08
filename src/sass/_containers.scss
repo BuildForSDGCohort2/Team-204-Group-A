@@ -1,7 +1,9 @@
 section {
   min-height: 100vh;
   position: relative;
+  width: 100%;
 }
+
 .header {
   background-image: linear-gradient(
     112.1deg,
@@ -13,10 +15,14 @@ section {
   &__content {
     width: 100%;
     flex: 1;
+    margin-bottom: 3rem;
+
+    padding: 1rem;
     @include flex-props;
 
     @include respond(tab-port) {
       flex-direction: column;
+      margin-top: 10rem;
     }
   }
 
@@ -27,6 +33,23 @@ section {
 
     @include respond(tab-port) {
       width: 100%;
+      margin: 2rem 0;
+      text-align: center;
     }
+  }
+}
+
+.footer {
+  min-height: 30vh;
+  background-image: linear-gradient(
+    112.1deg,
+    rgba(32, 38, 57, 1) 11.4%,
+    rgba(63, 76, 119, 1) 70.2%
+  );
+  @include flex-props;
+
+  &__left,
+  &__right {
+    @include flex-props;
   }
 }

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Card from "../components/Card";
 import Tabbs from "../components/Tabs";
-import { useFormik } from "formik";
-import axios from "axios";
+// import { useFormik } from "formik";
 // import { Row, Container } from "react-bootstrap";
+import { formSubmitHandler, formChangeHandler } from "../utility/Utility";
+import * as actions from "../store/actions/export";
+import { connect } from "react-redux";
 
 class Header extends Component {
   state = {
@@ -17,6 +19,15 @@ class Header extends Component {
           name: "email",
           id: "email",
           placeholder: "Your Email",
+        },
+      },
+      username: {
+        type: "text",
+        value: "",
+        attrs: {
+          name: "username",
+          id: "username",
+          placeholder: "Your Username",
         },
       },
       password: {
@@ -78,37 +89,51 @@ class Header extends Component {
     },
   };
 
-  handleChange = (e) => {
-    const updateform = { ...this.state.signIn };
-    updateform[e.target.name] = {
-      ...this.state.signIn[e.target.name],
-      value: e.target.value,
-    };
+  signInHandleChange = (e) => {
+    const updateform = formChangeHandler(
+      this.state.signIn,
+      e.target.name,
+      e.target.value
+    );
+
     this.setState({ signIn: updateform });
+  };
+
+  loginHandleChange = (e) => {
+    const updateform = formChangeHandler(
+      this.state.login,
+      e.target.name,
+      e.target.value
+    );
+
+    this.setState({ login: updateform });
   };
 
   loginSubmitHandler = (e) => {
     e.preventDefault();
+    const message = formSubmitHandler(this.state.login);
+    this.props.onSignIn(message);
+    // axios
+    //   .post("/api/v1/user/auth/signin", message)
+    //   .then((response) => console.log(response))
+    //   .catch((error) => console.log(error));
   };
 
   signInSubmitHandler = (e) => {
     e.preventDefault();
-    let message = {};
-    Object.values(this.state.signIn).map(
-      (val) => (message[val.attrs.name] = val.value)
-    );
-    console.log(message);
-    axios
-      .post("https://prescribe/api/v1/user/signup", message)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+    const message = formSubmitHandler(this.state.signIn);
+    message["isSignUp"] = true;
+    this.props.onSignUp(message);
+    // axios
+    //   .post("/api/v1/user/signup", message)
+    //   .then((response) => console.log(response))
+    //   .catch((error) => console.log(error));
   };
 
   render() {
     return (
       <section id="home" className="header">
         <Nav links={this.state.links} />
-
         <div className="header__content">
           <div className="header__left">
             <Card />
@@ -119,7 +144,8 @@ class Header extends Component {
               signIn={this.state.signIn}
               loginSubmit={(e) => this.loginSubmitHandler(e)}
               signInSubmit={(e) => this.signInSubmitHandler(e)}
-              change={this.handleChange}
+              signInchange={this.signInHandleChange}
+              loginchange={this.loginHandleChange}
             />
           </div>
         </div>
@@ -128,4 +154,11 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignIn: (message) => dispatch(actions.auth(message)),
+    onSignUp: (message) => dispatch(actions.auth(message)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Header);

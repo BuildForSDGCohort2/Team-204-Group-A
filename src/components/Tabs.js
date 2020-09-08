@@ -39,7 +39,6 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 500,
   },
 }));
 
@@ -61,7 +60,7 @@ const Tabbs = (props) => {
           indicatorColor="primary"
           textColor="inherit"
           variant="fullWidth"
-          aria-label="full width tabs example"
+          aria-label="Sign In and Sign Up Forms"
         >
           <Tab
             label="Sign Up"
@@ -81,7 +80,7 @@ const Tabbs = (props) => {
           title="A First time to everything"
           use="Sign Up"
           submit={props.signInSubmit}
-          change={props.change}
+          change={props.signInchange}
         />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
@@ -89,7 +88,7 @@ const Tabbs = (props) => {
           login={props.login}
           title="Welcome Back"
           use="Sign In"
-          change={props.change}
+          change={props.loginchange}
           submit={props.loginSubmit}
         />
       </TabPanel>
