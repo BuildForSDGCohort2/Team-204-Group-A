@@ -2,18 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter } from "react-router-dom";
+import BrowserRouter from "react-router-dom/BrowserRouter";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import authReducer from "./store/reducer/auth";
+import landingReducer from "./store/reducer/landing";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : null || compose;
 
-const rootReducer = combineReducers({ auth: authReducer });
+const rootReducer = combineReducers({
+  auth: authReducer,
+  landing: landingReducer,
+});
 
 const store = createStore(
   rootReducer,
@@ -25,8 +29,8 @@ const app = (
     <BrowserRouter>
       <React.StrictMode>
         <App />
-      </React.StrictMode>{" "}
-    </BrowserRouter>{" "}
+      </React.StrictMode>
+    </BrowserRouter>
   </Provider>
 );
 
