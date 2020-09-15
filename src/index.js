@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import BrowserRouter from "react-router-dom/BrowserRouter";
+import { BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -27,9 +27,7 @@ const store = createStore(
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </BrowserRouter>
   </Provider>
 );

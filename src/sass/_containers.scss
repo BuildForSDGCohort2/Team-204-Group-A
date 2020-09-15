@@ -61,3 +61,13 @@ section {
     }
   }
 }
+
+//////////////////////////////AUTH/////////////////////@include
+.auth {
+  .col {
+    min-height: 100vh;
+    @include flex-props;
+    flex-direction: column;
+    // background-color: black;
+  }
+}

@@ -30,3 +30,23 @@ body {
     width: 99% !important;
   }
 }
+
+.container {
+  @include flex-props;
+  min-height: 100vh;
+
+  form {
+    width: 60%;
+
+    @include respond(tab-port) {
+      width: 90%;
+    }
+    @include respond(phone) {
+      width: 90%;
+    }
+  }
+
+  .row {
+    width: 100%;
+  }
+}

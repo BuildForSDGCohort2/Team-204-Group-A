@@ -251,6 +251,10 @@
       text-decoration: none;
     }
   }
+  &__cta {
+    @include flex-props;
+    width: 100%;
+  }
 }
 
 ///////////////////////HEADING///////////////////////

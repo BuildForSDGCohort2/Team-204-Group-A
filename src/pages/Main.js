@@ -1,7 +1,11 @@
 import React from "react";
 
 const Main = () => {
-  return <div>Welcome</div>;
+  return (
+    <section>
+      <nav className="navbar"></nav>
+    </section>
+  );
 };
 
 export default Main;

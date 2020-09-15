@@ -11,82 +11,6 @@ import { connect } from "react-redux";
 class Header extends Component {
   state = {
     links: ["home", "about", "contact", "login", "signin"],
-    login: {
-      email: {
-        type: "email",
-        value: "",
-        attrs: {
-          name: "email",
-          id: "email",
-          placeholder: "Your Email",
-        },
-      },
-      username: {
-        type: "text",
-        value: "",
-        attrs: {
-          name: "username",
-          id: "username",
-          placeholder: "Your Username",
-        },
-      },
-      password: {
-        type: "password",
-        value: "",
-        attrs: {
-          name: "password",
-          id: "password",
-          placeholder: "Remember that Password?",
-        },
-      },
-    },
-    signIn: {
-      name: {
-        type: "text",
-        value: "",
-        attrs: {
-          name: "name",
-          id: "name",
-          placeholder: "Your Name",
-        },
-      },
-      email: {
-        type: "email",
-        value: "",
-        attrs: {
-          name: "email",
-          id: "email",
-          placeholder: "Your Email",
-        },
-      },
-      username: {
-        type: "text",
-        value: "",
-        attrs: {
-          name: "username",
-          id: "username",
-          placeholder: "Your Username",
-        },
-      },
-      password: {
-        type: "password",
-        value: "",
-        attrs: {
-          name: "password",
-          id: "password",
-          placeholder: "Your Password",
-        },
-      },
-      confirm: {
-        type: "password",
-        value: "",
-        attrs: {
-          name: "confirm",
-          id: "confirm",
-          placeholder: "Confirm Password",
-        },
-      },
-    },
   };
 
   signInHandleChange = (e) => {
@@ -113,10 +37,6 @@ class Header extends Component {
     e.preventDefault();
     const message = formSubmitHandler(this.state.login);
     this.props.onSignIn(message);
-    // axios
-    //   .post("/api/v1/user/auth/signin", message)
-    //   .then((response) => console.log(response))
-    //   .catch((error) => console.log(error));
   };
 
   signInSubmitHandler = (e) => {
@@ -124,10 +44,6 @@ class Header extends Component {
     const message = formSubmitHandler(this.state.signIn);
     message["isSignUp"] = true;
     this.props.onSignUp(message);
-    // axios
-    //   .post("/api/v1/user/signup", message)
-    //   .then((response) => console.log(response))
-    //   .catch((error) => console.log(error));
   };
 
   render() {
@@ -140,8 +56,8 @@ class Header extends Component {
           </div>
           <div className="header__right">
             <Tabbs
-              login={this.state.login}
-              signIn={this.state.signIn}
+              login={this.props.login}
+              signIn={this.props.signUp}
               loginSubmit={(e) => this.loginSubmitHandler(e)}
               signInSubmit={(e) => this.signInSubmitHandler(e)}
               signInchange={this.signInHandleChange}
@@ -153,6 +69,12 @@ class Header extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    login: state.landing.login,
+    signUp: state.landing.signIn,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -161,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

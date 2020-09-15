@@ -1,6 +1,7 @@
 import React from "react";
 import Links from "./Links";
 import Logo from "../assets/logo1.png";
+import { Link } from "react-router-dom";
 
 const Nav = (props) => {
   window.onscroll = () => scrollFxn();
@@ -35,6 +36,9 @@ const Nav = (props) => {
           {props.links.map((link) => (
             <Links title={link} key={link} />
           ))}
+          <Link to="/signin" className="form__btn">
+            SignIn
+          </Link>
         </ul>
       </div>
     </nav>
