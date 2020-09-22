@@ -9,3 +9,5 @@ export {
 } from "./auth";
 
 export { handleLogin, handleSignUp } from "./landing";
+
+export { showUserMenu } from "./dashboard";

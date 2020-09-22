@@ -26,6 +26,24 @@
       width: 50%;
     }
   }
+
+  &__profile {
+    width: 3.5rem;
+    height: 3.5rem;
+    // border-radius: 50%;
+    // background-color: white;
+    margin-right: 4rem;
+    @include flex-props;
+    cursor: pointer;
+  }
+  &__account {
+    z-index: 1000;
+    position: absolute;
+    top: 8rem;
+    right: 2rem;
+    width: 20rem;
+  }
+
   &__logo {
     height: auto;
     width: 100%;
@@ -39,27 +57,45 @@
     margin-right: 2rem;
   }
 
+  &__copy {
+    margin-top: auto;
+    @include flex-props;
+
+    p {
+      color: $color-light;
+    }
+  }
+
   &__bottom {
     display: flex;
     flex: 1;
 
     &--left {
+      display: flex;
+      flex-direction: column;
       position: relative;
       width: 25%;
       height: 90vh;
-      background-color: orange;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(32, 38, 57, 1) 11.4%,
+        rgba(63, 76, 119, 1) 70.2%
+      );
+      background-size: cover;
+      background-position: center;
     }
     &--right {
       position: relative;
+      background-color: #eee;
       height: 90vh;
       width: 80%;
-      background-color: orangered;
     }
   }
   &__list {
     list-style-type: none;
     @include flex-props;
     width: 100%;
+    margin-top: 5rem;
     flex-direction: column;
   }
   &__item {
@@ -81,6 +117,24 @@
       text-decoration: none;
       color: black;
       background-color: #ccc;
+    }
+  }
+}
+
+.zero {
+  width: 100%;
+  height: 90vh;
+  @include flex-props;
+  flex-direction: column;
+
+  &__img {
+    width: 200px;
+    height: 200px;
+
+    img {
+      width: 100%;
+      border-radius: 2rem;
+      border: 0.1rem solid #ccc;
     }
   }
 }

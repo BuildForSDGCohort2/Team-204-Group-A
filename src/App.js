@@ -8,10 +8,14 @@ import AuthForm from "./components/AuthForm";
 import { Route, Switch, Redirect } from "react-router-dom";
 import * as actions from "./store/actions/export";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class App extends Component {
   componentDidMount() {
     this.props.onCheckAuthState();
+    if (this.props.isAuth) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   render() {
@@ -20,13 +24,13 @@ class App extends Component {
         <Route path="/" component={Landing} exact />;
         <Route path="/signin" component={Auth_Cont} />;
         <Route path="/signin-signup-form" component={AuthForm} />;
-        <Route path="/home" component={Main} exact />;
+        <Route path="/dashboard" component={Main} exact />;
         <Redirect to="/" />
       </Switch>
     );
-    if (this.props.isAuth) {
-      return <Route path="/home" component={Main} />;
-    }
+    // if (this.props.isAuth) {
+    //   routes = <Route path="/dashboard" component={Main} exact />;
+    // }
     return <>{routes}</>;
   }
 }
@@ -42,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
     onCheckAuthState: () => dispatch(actions.checkAuthState()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

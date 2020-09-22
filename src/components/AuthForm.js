@@ -105,6 +105,7 @@ class AuthForm extends Component {
     data["toLogin"] = true;
     data["toSignup"] = false;
     this.props.onLogin(data);
+    this.props.history.push("/dashboard");
   };
 
   signUpSubmitHandler = (e) => {
@@ -114,6 +115,7 @@ class AuthForm extends Component {
     data["toLogin"] = false;
     data["is_provider"] = this.props.isProvider;
     this.props.onSignUp(data);
+    this.props.history.push("/dashboard");
   };
 
   render() {
@@ -169,7 +171,19 @@ class AuthForm extends Component {
         </Form>
       );
     }
-    return <Container>{form}</Container>;
+    return (
+      <Container>
+        <div className="row">
+          <button
+            onClick={() => this.props.history.goBack()}
+            className="btn btn-dark"
+          >
+            Back
+          </button>
+        </div>
+        {form}
+      </Container>
+    );
   }
 }
 

@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import authReducer from "./store/reducer/auth";
 import landingReducer from "./store/reducer/landing";
+import dashboardReducer from "./store/reducer/dashboard";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -17,6 +18,7 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   auth: authReducer,
   landing: landingReducer,
+  dashboard: dashboardReducer,
 });
 
 const store = createStore(
