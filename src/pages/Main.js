@@ -18,6 +18,7 @@ import * as actions from "../store/actions/export";
 import { ListItemIcon } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import SideBar from "../Main/components/SideBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +46,12 @@ const Main = (props) => {
               <AccountCircleIcon style={{ fontSize: "4.5rem" }} />
               <ArrowDropDownIcon style={{ color: "white", fontSize: "3rem" }} />
             </div>
+            <div
+              className="nav__hamburger"
+              onClick={(showSidebar) =>
+                props.onToggleSidebar(props.showSidebar)
+              }
+            ></div>
           </nav>
           {props.showAccountMenu && (
             <div className="dashboard__account">
@@ -55,11 +62,12 @@ const Main = (props) => {
               >
                 <ListItem divider>
                   <ListItemText
-                    primary={"User 1"}
+                    primary={"Hey User 1"}
                     style={{
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
+                      fontSize: "1.7rem",
                     }}
                   />
                 </ListItem>
@@ -73,7 +81,10 @@ const Main = (props) => {
                   <ListItemIcon>
                     <MailOutlineIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Messages" />
+                  <ListItemText
+                    primary="Messages"
+                    style={{ fontSize: "1.7rem" }}
+                  />
                 </ListItem>
                 <ListItem button>
                   <ListItemIcon>
@@ -87,6 +98,7 @@ const Main = (props) => {
         </div>
 
         <div className="dashboard__bottom">
+          {props.showSidebar && <SideBar />}
           <aside className="dashboard__bottom--left">
             <ul className="dashboard__list">
               <li className="dashboard__item">
@@ -155,10 +167,13 @@ const Main = (props) => {
 
 const mapStateToProps = (state) => ({
   showAccountMenu: state.dashboard.showAccountMenu,
+  showSidebar: state.dashboard.showSidebar,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onShowAccountMenu: (menuState) => dispatch(actions.showUserMenu(menuState)),
+  onToggleSidebar: (showSideBar) =>
+    dispatch(actions.toggleSidebar(showSideBar)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

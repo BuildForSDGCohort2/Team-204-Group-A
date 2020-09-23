@@ -10,4 +10,4 @@ export {
 
 export { handleLogin, handleSignUp } from "./landing";
 
-export { showUserMenu } from "./dashboard";
+export { showUserMenu, toggleSidebar } from "./dashboard";

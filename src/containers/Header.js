@@ -7,6 +7,7 @@ import Tabbs from "../components/Tabs";
 import { formSubmitHandler, formChangeHandler } from "../utility/Utility";
 import * as actions from "../store/actions/export";
 import { connect } from "react-redux";
+import { Container, Row } from "react-bootstrap";
 
 class Header extends Component {
   state = {
@@ -49,22 +50,28 @@ class Header extends Component {
   render() {
     return (
       <section id="home" className="header">
-        <Nav links={this.state.links} />
-        <div className="header__content">
-          <div className="header__left">
-            <Card />
-          </div>
-          <div className="header__right">
-            <Tabbs
-              login={this.props.login}
-              signIn={this.props.signUp}
-              loginSubmit={(e) => this.loginSubmitHandler(e)}
-              signInSubmit={(e) => this.signInSubmitHandler(e)}
-              signInchange={this.signInHandleChange}
-              loginchange={this.loginHandleChange}
-            />
-          </div>
-        </div>
+        <Container>
+          <Row>
+            <Nav links={this.state.links} />
+          </Row>
+          <Row>
+            <div className="header__content">
+              <div className="header__left">
+                <Card />
+              </div>
+              <div className="header__right">
+                <Tabbs
+                  login={this.props.login}
+                  signIn={this.props.signUp}
+                  loginSubmit={(e) => this.loginSubmitHandler(e)}
+                  signInSubmit={(e) => this.signInSubmitHandler(e)}
+                  signInchange={this.signInHandleChange}
+                  loginchange={this.loginHandleChange}
+                />
+              </div>
+            </div>
+          </Row>
+        </Container>
       </section>
     );
   }
