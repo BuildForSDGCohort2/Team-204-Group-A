@@ -1,6 +1,33 @@
 import * as actions from "./actionTypes";
 import axios from "../../axios-base";
 
+export const getAuthData = () => {
+  return (dispatch, getState) => {
+    const data = getState().landing.data;
+    console.log(data);
+    dispatch({ type: actions.GET_AUTH_DATA, data: data });
+  };
+};
+
+export const toLogin = (isLogin) => {
+  return {
+    type: actions.LOGIN_USER,
+    isLogin: isLogin,
+  };
+};
+export const signInUser = (isProvider) => {
+  return {
+    type: actions.SIGNIN_USER,
+    isProvider: isProvider,
+  };
+};
+export const signInProvider = (isProvider) => {
+  return {
+    type: actions.SIGNIN_PROVIDER,
+    isProvider: isProvider,
+  };
+};
+
 export const authStart = () => {
   return {
     type: actions.AUTH_START,
@@ -38,12 +65,12 @@ export const authFail = (error) => {
 };
 
 export const auth = (data) => {
+  console.log(data);
   return (dispatch) => {
     dispatch(authStart());
     let url = "/api/v1/user/auth/signin";
 
     if (data.isSignUp) {
-      console.log("hit");
       url = "/api/v1/user/signup";
     }
 
@@ -72,19 +99,8 @@ export const setAuthRedirectPath = (path) => {
 export const checkAuthState = () => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
-
     const authData = { token: token };
 
-    if (!token) {
-      dispatch(authLogOut());
-    } else {
-      const expdate = new Date(localStorage.getItem("exptime"));
-
-      if (expdate > new Date()) {
-        dispatch(authSuccess(authData));
-      } else {
-        dispatch(logOut((expdate.getTime() - new Date().getTime()) / 1000));
-      }
-    }
+    token && dispatch(authSuccess(authData));
   };
 };

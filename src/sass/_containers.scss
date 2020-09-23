@@ -50,6 +50,24 @@ section {
 
   &__left,
   &__right {
+    height: 100%;
+    padding: 1rem 2rem;
+    height: 50%;
     @include flex-props;
+    flex-direction: column;
+
+    @include respond(tab-port) {
+      padding: 0.5rem 1rem;
+    }
+  }
+}
+
+//////////////////////////////AUTH/////////////////////@include
+.auth {
+  .col {
+    min-height: 100vh;
+    @include flex-props;
+    flex-direction: column;
+    // background-color: black;
   }
 }
